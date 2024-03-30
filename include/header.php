@@ -34,6 +34,6 @@
 
 
 <?php 
-       
-            include 'usernav.php';
+            include 'config.php';       
+            include 'navigation.php';
 ?>
