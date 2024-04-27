@@ -1,5 +1,6 @@
 <?php
 include('connection.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -41,11 +42,12 @@ if(isset($_POST['sub']))
 
     if($res)
 	{
-		header("Location:admin-home.php");
+		$_SESSION['un']=$un;
+        header("Location:admin-home.php");
 	}
 	else
 	{
-		echo "<script>alert('Wrong User')</scrpt>";
+		echo "<script>alert('Wrong User')</script>";
 	}
     
 }
