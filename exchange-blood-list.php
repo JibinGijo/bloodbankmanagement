@@ -2,27 +2,25 @@
 include('connection.php');
 session_start();
 
-$un=$_SESSION['un'];
-if(!$un)
-{
-    header("Location:index.php");
+$un = $_SESSION['un'];
+if (!$un) {
+    header("Location: index.php");
 }
-?>    
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Exchange Blood Registration</title>
     <link rel="stylesheet" type="text/css" href="css/s1.css">
     <style type="text/css">
-    #form1 {
-        width: 80%;
-        height: 320px;
-        background-color: red;
-        color: white;
-        border-radius: 10px;
-    }
-</style>
-
+        #form1 {
+            width: 80%;
+            height: 320px;
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
 
 </head>
 
@@ -95,44 +93,74 @@ if(!$un)
     </table><!-- Closing tag for the table -->
     </form>
     <?php
-if(isset($_POST['sub']))
-{
-    $name=$_POST['name'];
-    $fname=$_POST['fname'];
-     $address=$_POST['address'];
-    $city=$_POST['city'];
-    $age=$_POST['age'];
-    $email=$_POST['email'];
-    $mno=$_POST['mno'];
-     $bgroup=$_POST['bgroup'];
-    $exbgroup=$_POST['exbgroup'];
-    $q="select * from donor_registration where bgroup ='$bgroup'";
-    $st=$db->query($q);
-    $num_row=$st->fetchAll();
-   
-    /*$q=$db->prepare("INSERT INTO exchange_b (name,fname,address,city,age,email,mno,bgroup,exbgroup) VALUES (:name,:fname,:address,:city,:age,:email,:mno,:bgroup,:exbgroup)");
-    $q->bindValue('name',$name);
-    $q->bindValue('fname',$fname);
-    $q->bindValue('address',$address);
-    $q->bindValue('city',$city);
-    $q->bindValue('age',$age);
-    $q->bindValue('email',$email);
-    $q->bindValue('mno',$mno);
-    $q->bindValue('bgroup',$bgroup);
-    $q->bindValue('exbgroup',$exbgroup);
-    if($q->execute())
-    {
-        echo"<script>alert(' Registration Successful')</script>";
-    }
-    else{
-        echo"<script>alert('Donor Registration Failed')</script>";
-    }
-    
 
+if (isset($_POST['sub'])) {
+    // Assuming $_POST values are properly sanitized or validated
+    $name = $_POST['name'];
+    $fname = $_POST['fname'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $age = $_POST['age'];
+    $email = $_POST['email'];
+    $mno = $_POST['mno'];
+    $bgroup = $_POST['bgroup'];
+    $exbgroup = $_POST['exbgroup'];
 
-*/
+    // Prepared statement for selecting the donor
+    $q = "SELECT * FROM donor_registration WHERE bgroup = :bgroup OR bgroup = :exbgroup LIMIT 1";
+    $stmt = $db->prepare($q);
+    $stmt->bindParam(':bgroup', $bgroup);
+    $stmt->bindParam(':exbgroup', $exbgroup);
+    $stmt->execute();
+
+    $num_row = $stmt->fetch();
+
+    if ($num_row) {
+        $donor_id = $num_row['id'];
+        $donor_name = $num_row['name'];
+        $donor_bgroup = $num_row['bgroup'];
+        $donor_mno = $num_row['mno'];
+
+        // Prepared statement for inserting into out_stock_b
+        $q1 = "INSERT INTO out_stock_b (bname, name, mno) VALUES (:b1, :name, :mno)";
+        $stmt1 = $db->prepare($q1);
+        $stmt1->bindParam(':b1', $donor_bgroup);
+        $stmt1->bindParam(':name', $donor_name);
+        $stmt1->bindParam(':mno', $donor_mno);
+        $stmt1->execute();
+
+        // Prepared statement for deleting from donor_registration
+        $q2 = "DELETE FROM donor_registration WHERE id = :id";
+        $stmt2 = $db->prepare($q2);
+        $stmt2->bindParam(':id', $donor_id);
+        $stmt2->execute();
+    } else {
+        echo "<script>alert('No donor found with the selected blood group')</script>";
+    }
+
+    // Prepared statement for inserting into exchange_b regardless of donor availability
+    $q = "INSERT INTO exchange_b (name, fname, address, city, age, email, mno, bgroup, exbgroup) VALUES (:exchange_name, :fname, :address, :city, :age, :email, :mno, :bgroup, :exbgroup)";
+    $stmt = $db->prepare($q);
+    $stmt->bindParam(':exchange_name', $name);
+    $stmt->bindParam(':fname', $fname);
+    $stmt->bindParam(':address', $address);
+    $stmt->bindParam(':city', $city);
+    $stmt->bindParam(':age', $age);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mno', $mno);
+    $stmt->bindParam(':bgroup', $bgroup);
+    $stmt->bindParam(':exbgroup', $exbgroup);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Registration Successful')</script>";
+    } else {
+        echo "<script>alert('Exchange Registration Failed: " . implode(" ", $stmt->errorInfo()) . "')</script>";
+    }
 }
+
+
 ?>
+
 </div></center>
 
 </div>
