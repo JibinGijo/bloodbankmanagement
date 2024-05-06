@@ -1,10 +1,7 @@
 <?php
 include('connection.php');
 session_start();
-// Check if logout parameter is set in the URL and display JavaScript alert
-if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-    echo '<script>alert("You have been logged out.");</script>';
-}
+
 // Initialize variables for username and password
 $un = isset($_POST['un']) ? $_POST['un'] : ''; // Set the username to the submitted value if available
 $ps = '';
@@ -25,43 +22,87 @@ if(isset($_POST['sub']))
         $_SESSION['un']=$un;
         header("Location:admin-home.php");
     }
-    else
-    {
-        echo "<script>alert('Wrong User')</script>";
-    }
-    
-    // Unset form data to clear the fields
-    $un = ''; // Clear the username
-    $ps = ''; // Clear the password
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Login</title>
     <link rel="stylesheet" type="text/css" href="css/s1.css">
+    <style>
+        /* Background image */
+        body {
+            background-image: url('your-image.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #login-container form {
+            text-align: center;
+        }
+
+        #login-container input[type="text"],
+        #login-container input[type="password"] {
+            width: 250px;
+            height: 30px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        #login-container input[type="submit"] {
+            width: 100px;
+            height: 35px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login-container p.error {
+            color: red;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<div id="full">
-<div id="inner_full">
-<div id="header"> <h2>Blood Bank Management System</h2></div>
-<div id="body">
-<br><br><br><br><br>
-<form action="" method="post">
-<table align="center">
-<tr>
-<td width="200px" height="70px"><b>Enter Username</b></td>
-<td width="100px" height="70px"><input type="text" name="un" value="<?php echo $un; ?>" placeholder="Enter Username" style=" width: 180px;height: 30px;border-radius: 10px;"></td>
-</tr>
-<tr>
-<td width="200px" height="70px"><b>Enter Password</b></td>
-<td width="200px" height="70px"><input type="password" name="ps" value="<?php echo $ps; ?>" placeholder="Enter Password" style=" width: 180px;height: 30px;border-radius: 10px;"></td>
-</tr>
-<tr>
-<td><input type="submit" name="sub" value="Login" style="width: 70px; height: 30px;border-radius: 5px;"></td>
-</tr> </table>
-</form>
+
+<div id="login-container">
+    <h2>Blood Bank Management System</h2>
+    <form action="" method="post">
+        <input type="text" name="un" value="<?php echo $un; ?>" placeholder="Enter Username"><br>
+        <input type="password" name="ps" value="<?php echo $ps; ?>" placeholder="Enter Password"><br>
+        <input type="submit" name="sub" value="Login">
+    </form>
+    <?php
+    if(isset($_POST['sub']) && !$res) {
+        echo "<p class='error'>Wrong username or password</p>";
+    }
+    ?>
 </div>
-<div id="footer"><h4 align="center">Copyright@myprojecthd</h4></div> </div>
-</div> </body>
+
+</body>
 </html>
