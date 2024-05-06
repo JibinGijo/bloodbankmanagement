@@ -2,6 +2,5 @@
 session_start();
 $un = $_SESSION['un'];
 session_destroy();
-echo '<script>alert("You have been logged out.");</script>';
-header('Location:index.php');
+header('Location: index.php?logout=true'); // Pass logout parameter in the URL
 ?>

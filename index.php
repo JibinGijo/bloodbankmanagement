@@ -1,7 +1,10 @@
 <?php
 include('connection.php');
 session_start();
-
+// Check if logout parameter is set in the URL and display JavaScript alert
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    echo '<script>alert("You have been logged out.");</script>';
+}
 // Initialize variables for username and password
 $un = isset($_POST['un']) ? $_POST['un'] : ''; // Set the username to the submitted value if available
 $ps = '';
