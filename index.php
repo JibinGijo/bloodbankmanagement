@@ -86,9 +86,22 @@ if(isset($_POST['sub']))
             color: red;
             text-align: center;
         }
+
+        /* Login icon */
+        .login-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-image: url('login-icon.png'); /* Replace with your icon */
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
+
+<div class="login-icon"></div>
 
 <div id="login-container">
     <h2>Blood Bank Management System</h2>
