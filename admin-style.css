@@ -1,0 +1,59 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container styles */
+#container {
+    width: 80%;
+    margin: auto;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Header styles */
+#header h1 {
+    text-align: center;
+}
+
+/* Content styles */
+#content {
+    padding: 20px;
+}
+
+#content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#content ul {
+    list-style: none;
+    padding: 0;
+}
+
+#content ul li {
+    margin-bottom: 10px;
+}
+
+#content ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+#content ul li a:hover {
+    color: #ff0000;
+}
+
+#content p {
+    text-align: center;
+}
+
+/* Footer styles */
+#footer {
+    margin-top: 20px;
+    text-align: center;
+}
