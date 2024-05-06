@@ -1,55 +1,89 @@
-#full {
-    width: 100%;
-    height: auto;
-  }
-  
-  #inner_full {
-    width: 80%;
-    height: auto;
-    margin: auto;
-  }
-  
-  #header {
-    width: 100%;
-    height: 50px;
-    background-color: red;
-    color: rgb(255, 255, 255);
-  }
-   
-  #body {
-    width: 100%;
-    height: 400px;
-  }
-  
-  #footer {
-    width: 100%;
-    height: 70px;
-    background-color: red;
-    color: black;
-  }
-  ul li{
-    width:20%;
-    height: 50px;
-    line-height: 50px;
-    margin-left: 55px;
-    background: red;
-    color:white;
-    float:left;
-    border-radius: 10px;
-    list-style: none;
-    text-align:center;
-  }
-
-  ul li a{
-    text-decoration: none;
-    color: white;
-  }
-#form{
-    width: 80%;
-    height: 250px;
-    background-color: red;
-    color: white;
-    border-radius: 10px;
-     
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://imgs.search.brave.com/PICVWQ-QGS4GGU0UXyy2lmmAoiUC8aP4LFS3jXWc3Lc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZWNvZGVjYW1w/Lm9yZy9uZXdzL2Nv/bnRlbnQvaW1hZ2Vz/L3NpemUvdzIwMDAv/MjAyMi8wOS9qb25h/dGFuLXBpZS0zbDNS/d1FkSFJIZy11bnNw/bGFzaC5qcGc'); /* Replace 'your-background-image.jpg' with the URL of your desired background image */
+  background-size: cover;
+  background-position: center;
+  color: #fff; /* Text color */
+}
+
+/* Container styles */
+#full {
+  width: 100%;
+  height: auto;
+}
+
+#inner_full {
+  width: 80%;
+  height: auto;
+  margin: auto;
+}
+
+/* Header styles */
+#header {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 0, 0, 0.8); /* Red with some transparency */
+  color: #fff; /* Text color */
+  text-align: center;
+  line-height: 50px; /* Vertically center text */
+}
+
+/* Footer styles */
+#footer {
+  width: 100%;
+  height: 70px;
+  background-color: rgba(255, 0, 0, 0.8); /* Red with some transparency */
+  color: #000; /* Text color */
+  text-align: center;
+  line-height: 70px; /* Vertically center text */
+}
+
+/* Navigation styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  width: 20%;
+  height: 50px;
+  line-height: 50px;
+  margin-left: 20px;
+  background-color: rgba(255, 0, 0, 0.8); /* Red with some transparency */
+  color: #fff; /* Text color */
+  float: left;
+  border-radius: 10px;
+  text-align: center;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #fff; /* Text color */
+  display: block;
+}
+
+ul li:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* White with some transparency on hover */
+  color: #000; /* Text color on hover */
+}
+
+/* Form styles */
+#form {
+  width: 80%;
+  height: 250px;
+  background-color: rgba(255, 0, 0, 0.8); /* Red with some transparency */
+  color: #fff; /* Text color */
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+}
