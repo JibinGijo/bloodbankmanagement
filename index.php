@@ -28,12 +28,12 @@ if(isset($_POST['sub']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blood Bank Management System</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" type="text/css" href="css/s1.css">
     <style>
         /* Background image */
         body {
-            background-image: url('your-image.jpg');
+            background-image: url('https://imgs.search.brave.com/PICVWQ-QGS4GGU0UXyy2lmmAoiUC8aP4LFS3jXWc3Lc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZWNvZGVjYW1w/Lm9yZy9uZXdzL2Nv/bnRlbnQvaW1hZ2Vz/L3NpemUvdzIwMDAv/MjAyMi8wOS9qb25h/dGFuLXBpZS0zbDNS/d1FkSFJIZy11bnNw/bGFzaC5qcGc');');
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
@@ -42,8 +42,7 @@ if(isset($_POST['sub']))
         }
 
         #login-container {
-            display: none;
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -51,7 +50,6 @@ if(isset($_POST['sub']))
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
         }
 
         #login-container h2 {
@@ -88,45 +86,15 @@ if(isset($_POST['sub']))
             color: red;
             text-align: center;
         }
-
-        /* Login icon */
-        .login-icon {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background-image: url('login-icon.png'); /* Replace with your icon */
-            background-size: cover;
-            cursor: pointer;
-        }
-
-        #mission-vision {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        #mission-vision h2 {
-            margin-top: 0;
-        }
-
-        #mission-vision p {
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
 
-<div class="login-icon" onclick="toggleLoginPopup()"></div>
-
 <div id="login-container">
-    <h2>Login</h2>
+    <h2>Blood Bank Management System</h2>
     <form action="" method="post">
-        <input type="text" name="un" placeholder="Enter Username"><br>
-        <input type="password" name="ps" placeholder="Enter Password"><br>
+        <input type="text" name="un" value="<?php echo $un; ?>" placeholder="Enter Username"><br>
+        <input type="password" name="ps" value="<?php echo $ps; ?>" placeholder="Enter Password"><br>
         <input type="submit" name="sub" value="Login">
     </form>
     <?php
@@ -135,24 +103,6 @@ if(isset($_POST['sub']))
     }
     ?>
 </div>
-
-<div id="mission-vision">
-    <h2>Mission</h2>
-    <p>To save lives by bridging the gap between blood donors and recipients. Guided by our core values of compassion, accessibility, and efficiency, we are committed to promoting a culture of voluntary blood donation for the betterment of society.</p>
-    <h2>Vision</h2>
-    <p>Establishing a seamless platform for effective blood donation management. With the aim of connecting donors with recipients in need, our focus remains steadfast on ensuring a consistent and dependable supply of blood for critical medical interventions and emergencies.</p>
-</div>
-
-<script>
-    function toggleLoginPopup() {
-        var loginContainer = document.getElementById('login-container');
-        if (loginContainer.style.display === 'none') {
-            loginContainer.style.display = 'block';
-        } else {
-            loginContainer.style.display = 'none';
-        }
-    }
-</script>
 
 </body>
 </html>
