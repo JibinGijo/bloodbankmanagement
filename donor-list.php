@@ -12,7 +12,7 @@ if (!$un) {
 <html>
 <head>
     <title>Donor List</title>
-    <link rel="stylesheet" type="text/css" href="css/donor-list-style.css">
+    <link rel="stylesheet" type="text/css" href="css/s1.css">
 </head>
 <body>
     <div id="full">
