@@ -42,7 +42,7 @@ The Blood Bank Management System is a web-based application designed to manage b
 
 3. **Database Setup**:
    - Create a MySQL database named `mypro_bbms`.
-   - Import the database schema (not provided in the current files).
+   - Import the database schema .
 
 4. **Access the Application**:
    - Open a browser and navigate to `http://localhost/bbms/index.php`.
